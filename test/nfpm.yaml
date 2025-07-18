@@ -1,0 +1,13 @@
+name: test
+arch: all
+version: ${VERSION}
+section: default
+priority: extra
+maintainer: Nick Ng <ngyewch@gmail.com>
+description: |
+  Test
+
+contents:
+  - src: build/install/test
+    dst: /opt/test
+    type: tree
