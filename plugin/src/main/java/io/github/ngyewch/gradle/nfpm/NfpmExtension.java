@@ -5,6 +5,9 @@ import org.gradle.api.provider.Property;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.Optional;
 
+/**
+ * nfpm extension.
+ */
 public abstract class NfpmExtension {
   /**
    * Get the package name.
