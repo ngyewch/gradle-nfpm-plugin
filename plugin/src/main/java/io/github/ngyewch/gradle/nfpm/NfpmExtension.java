@@ -7,13 +7,13 @@ import org.gradle.api.tasks.Optional;
 
 public abstract class NfpmExtension {
   /**
-   * Get the archive base name.
+   * Get the package name.
    *
-   * @return archive base name.
+   * @return package name.
    */
   @Input
   @Optional
-  public abstract Property<String> getArchiveBaseName();
+  public abstract Property<String> getPackageName();
 
   /**
    * Get the list of packagers.

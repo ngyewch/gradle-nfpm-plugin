@@ -1,13 +1,14 @@
-name: test
-arch: all
+name: ${NAME}
+arch: ${ARCH}
 version: ${VERSION}
-section: default
-priority: extra
+section: extra
+priority: optional
 maintainer: Nick Ng <ngyewch@gmail.com>
 description: |
   Test
 
 contents:
-  - src: build/install/test
+  - src: ${INSTALL_DIR}
     dst: /opt/test
     type: tree
+    expand: true

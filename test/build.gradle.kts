@@ -14,6 +14,6 @@ application {
 }
 
 nfpm {
-    archiveBaseName = "test2"
+    packageName = "test2"
     packagers = listOf("deb")
 }
