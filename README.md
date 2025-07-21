@@ -24,6 +24,15 @@ See https://github.com/ngyewch/gradle-nfpm-plugin/tree/main/test
 | `packageName` | `String`       | N        | `${project.name}` | Package name. |
 | `packagers`   | `List<String>` | N        | `["deb", "rpm"]`  | Packagers.    | 
 
+#### Environment variables passed to `nfpm`
+
+| Name          | Description                                         |
+|---------------|-----------------------------------------------------|
+| `NAME`        | Package name.                                       |
+| `VERSION`     | Package version.                                    |
+| `ARCH`        | Architecture.                                       |
+| `INSTALL_DIR` | Install dir (if `application` plugin is available). |
+
 ## Extension
 
 ### `nfpm`
