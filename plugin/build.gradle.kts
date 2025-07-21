@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
     id("ca.cutterslade.analyze") version "2.0.0"
     id("com.asarkar.gradle.build-time-tracker") version "5.0.1"
-    id("com.diffplug.spotless") version "7.1.0"
+    id("com.diffplug.spotless") version "7.2.0"
     id("com.github.ben-manes.versions") version "0.52.0"
     id("io.github.ngyewch.git-describe") version "0.2.0"
     id("com.gradle.plugin-publish") version "1.3.1"
