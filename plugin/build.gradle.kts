@@ -11,6 +11,7 @@ plugins {
 }
 
 group = "io.github.ngyewch.gradle"
+version = "0.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
