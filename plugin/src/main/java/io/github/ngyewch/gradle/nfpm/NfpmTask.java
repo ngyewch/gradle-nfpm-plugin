@@ -2,6 +2,7 @@ package io.github.ngyewch.gradle.nfpm;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,24 +83,41 @@ public abstract class NfpmTask extends DefaultTask {
     if (installDistTask != null) {
       env.put("INSTALL_DIR", installDistTask.getDestinationDir().getPath());
     }
+    final boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
     for (final String packager : packagers) {
       final File target =
           outputDir
               .get()
               .file(String.format("%s_%s_%s.%s", packageName, packageVersion, arch, packager))
               .getAsFile();
+      final List<String> commandLine = new ArrayList<>();
+      if (isWindows) {
+        commandLine.add("cmd.exe");
+        commandLine.add("/c");
+      } else {
+        commandLine.add("/bin/sh");
+        commandLine.add("-c");
+      }
+      commandLine.add(
+          String.join(
+              " ", "nfpm", "package", "--packager", packager, "--target", target.getPath()));
       final ExecOutput execOutput =
           providerFactory.exec(
               execSpec ->
                   execSpec
-                      .commandLine(
-                          "nfpm", "package", "--packager", packager, "--target", target.getPath())
+                      .commandLine(commandLine)
                       .setIgnoreExitValue(true)
                       .environment(env)
                       .workingDir(projectDir.get()));
       final ExecResult execResult = execOutput.getResult().get();
-      System.out.println(execOutput.getStandardOutput().getAsText().get());
-      System.out.println(execOutput.getStandardError().getAsText().get());
+      final String stdoutText = execOutput.getStandardOutput().getAsText().get();
+      final String stderrText = execOutput.getStandardError().getAsText().get();
+      if (!stdoutText.isEmpty()) {
+        System.out.println(stdoutText);
+      }
+      if (!stderrText.isEmpty()) {
+        System.out.println(stderrText);
+      }
       if (execResult.getExitValue() != 0) {
         throw new GradleException("nfpm exit code: " + execResult.getExitValue());
       }
