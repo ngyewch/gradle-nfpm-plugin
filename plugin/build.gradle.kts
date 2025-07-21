@@ -19,8 +19,6 @@ java {
 
 dependencies {
     implementation(gradleApi())
-
-    implementation("org.apache.commons:commons-exec:1.5.0")
 }
 
 repositories {
