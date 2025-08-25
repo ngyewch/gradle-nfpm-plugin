@@ -21,7 +21,7 @@ jobs:
         working-directory: plugin
         run: ./gradlew build --no-daemon
 
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
         with:
           version: 2025.7.12
           install_args: "nfpm@2.43.0"
